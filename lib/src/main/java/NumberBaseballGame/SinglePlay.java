@@ -45,10 +45,9 @@ public class SinglePlay {
             // if the number is repeated then get a new random number again
             if (repeated){
                 ans.add(int_random);
-                System.out.println(ans);
             }
         }
-
+        System.out.println(ans);
     }
 
     // prepare for the game (set up and show instruction):
