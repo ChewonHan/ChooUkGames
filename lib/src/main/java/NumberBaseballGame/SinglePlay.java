@@ -6,12 +6,6 @@ import java.util.*;
 
 public class SinglePlay {
 
-    // initialize ans, strike, and ball
-    int strike, ball;
-
-    // initialize an array list for random number and guess
-    ArrayList<Integer> ans, guess = new ArrayList<>();
-
     public static void main(String[] args) {
         SinglePlay first = new SinglePlay();
     }
@@ -24,8 +18,16 @@ public class SinglePlay {
         // call functions to proceed
         randomList();
         gameStart();
-        gamePlay();
+        //gamePlay();
     }
+
+    // initialize ans, strike, and ball
+    int strike;
+    int ball;
+
+    // initialize an array list for random number and guess
+    ArrayList<Integer> ans = new ArrayList<>();
+    ArrayList<Integer> guess = new ArrayList<>();
 
     // generate a random 4-digits number (= ans) and return
     public void randomList(){
@@ -34,10 +36,19 @@ public class SinglePlay {
         Random random = new Random();
 
         // generate 4 random numbers and add them to the list
-        for (int i = 0; i < 4; i ++){
+        for (ans.size(); ans.size() < 4; ){
             int int_random = random.nextInt(10); // bound is 10
-            ans.add(int_random);
+
+            // set the boolean var for determine repeated or not
+            boolean repeated =! ans.contains(int_random);
+
+            // if the number is repeated then get a new random number again
+            if (repeated){
+                ans.add(int_random);
+                System.out.println(ans);
+            }
         }
+
     }
 
     // prepare for the game (set up and show instruction):
@@ -46,12 +57,12 @@ public class SinglePlay {
         System.out.println("Welcome to play NUMBER BASEBALL ! ");
 
         // ask if need instruction
-        System.out.println("\n Do you want to read the instruction? Please type (Yes / No) ");
+        System.out.println("\nDo you want to read the instruction? \nPlease type (Yes / No) ");
 
 
         // import Scanner to get the user input and get the input
         Scanner sc = new Scanner(System.in); // System.in is a standard input stream
-        String userInput = (sc.nextLine()).toLowerCase();
+        String userInput = (sc.nextLine()); //.toLowerCase();
 
         // if the input is "yes" then print the instruction
         if (userInput == "yes") {
@@ -67,6 +78,7 @@ public class SinglePlay {
                     "\n    then your score is 1 strike and 1 ball." +
                     "\n 5. If you get 4 strikes in 8 trials then you are the WINNER !" +
                     "\n    But if you don't then you will be the LOSER :'( " +
+                    "\n !! Be aware, the numbers won't be repeated !!" +
                     "\n");
             System.out.println("----------------------------- GOOD LUCK -----------------------------");
         }
