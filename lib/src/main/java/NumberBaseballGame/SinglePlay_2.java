@@ -1,17 +1,17 @@
-package NumberBaseballGame;
+package main.java.NumberBaseballGame;
 
 import java.util.*;
 
 // Try to run this code on my school folder
 
-public class SinglePlay {
+public class SinglePlay_2 {
 
     public static void main(String[] args) {
-        SinglePlay first = new SinglePlay();
+        SinglePlay_2 first = new SinglePlay_2();
     }
 
     // Initialize all variables and executes functions for proceeding the game
-    SinglePlay(){
+    SinglePlay_2(){
         // set the values for the int variables
         strike = 0;
         ball = 0;
@@ -59,11 +59,11 @@ public class SinglePlay {
         System.out.println("\nDo you want to read the instruction? \nPlease type (Yes / No) ");
 
 
-
-
         // import Scanner to get the user input and get the input
+        // ERROR: although the input is "yes" it says it's not "yes" (false)
         Scanner sc = new Scanner(System.in); // System.in is a standard input stream
         String userInput = (sc.nextLine()).toLowerCase();
+        
 
         // if the input is "yes" then print the instruction
         if (userInput == "yes") {
@@ -85,14 +85,14 @@ public class SinglePlay {
         }
         // if the input is "no" then start the game
         else{
-            System.out.println(" Then the game will start soon :) ");
+            System.out.println("\n----------------------------- GOOD LUCK -----------------------------\nThen the game will start soon :) ");
             gamePlay();
         }
     }
 
     // start the game:
     public void gamePlay(){
-        System.out.println("Now the game starts !");
+        System.out.println("\n\nNow the game starts !");
 
         // set the trial
         int trial = 1;
@@ -102,29 +102,35 @@ public class SinglePlay {
 
         // 8 trials are given but if the user gets 4 strikes then the game ends:
         while ((strike <= 3) || trial < 9){
-
+            int n_th = 1;
             // each trial:
             // ask the user to input the guessing number (= guess)
-            for (int n_th = 1; n_th < 5; n_th++) {
+            while ( n_th < 5) {
                 System.out.println(" Please input the " + n_th + "th digit:");
 
                 // get the user's input and
                 int userInput = sc.nextInt();
 
                 // check the number of digit by converting int to str (check length)
-                String inputString = Integer.toString(userInput);
-                int size = inputString.length();
+
+                // made 2 lines below comented
+                //String inputString = Integer.toString(userInput);
+                //int size = inputString.length();
+                System.out.println(userInput + "SIZE");
 
                 // if the user input is not int &
                 // more than 1 digit then ask the user to input again
-                if ( size != 1){
-                    System.out.println("Please input the digit again");
+
+                // ERROR: if I enter one digit number then gives a boundary error
+                if ( userInput >= 10){
+                    System.out.println("Please input the one digit number again");
                     userInput = sc.nextInt();
                 }
                 // if the digit is 1, then add to the guess list
                 else{
                     // add it to the guess array list
                     guess.add(userInput);
+                    n_th += 1;
                 }
 
                 // if it has the same location & same number ->  count strike + !
